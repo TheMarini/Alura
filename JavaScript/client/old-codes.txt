@@ -1,0 +1,23 @@
+//        event.preventDefault();
+//
+//        var row = $("<tr></tr>"), dados = [];
+//        $(this).find('input').each(function(index) {
+//            dados.push($(this).val());
+//            $(row).append($("<td></td>").text(dados[index]));
+//            
+//            switch(index){
+//                case 0:
+//                    $(this).val('');
+//                    $(this).focus();
+//                    break;
+//                case 1:
+//                    $(this).val('0');
+//                    break;
+//                case 2:
+//                    $(this).val('1');
+//                    break;
+//            }
+//            
+//        });
+//        $(row).append($("<td></td>").text(dados[1]*dados[2]));
+//        $('table tbody').append(row);
