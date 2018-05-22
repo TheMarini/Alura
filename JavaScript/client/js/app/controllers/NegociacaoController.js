@@ -9,16 +9,9 @@ class NegociacaoController {
     adiciona(event) {
         event.preventDefault();
 
-        //FUNCTIONS & PARAMETER TYPES
-        //let data = new Date(this._data.val().split('-')); --> send array as parameter
-        //let data = new Date(...this._data.val().split('-').map(function (item, indice) { return (indice == 1) ? item - 1 : item })); --> "..." for each parameter | ".map" -> flux by each item in an array
-        //let data = new Date(...this._data.val().split('-').map(function (item, indice) { return item - indice % 2 })); --> w/o if
-        //let data = new Date(...this._data.val().split('-').map((item, indice) => { return item - indice % 2 }));  --> arrow function
-        //let data = new Date(...this._data.val().split('-').map((item, indice) => item - indice % 2 )); // --> only one instruction
-
-        let data = new Date(this._data.val().split('-'));
-
-        let negociacao = new Negociacao(data, this._quantidade.val(), this._valor.val());
+        let negociacao = new Negociacao(DateHelper.textoParaData(this._data.val()), this._quantidade.val(), this._valor.val());
         console.log(negociacao);
+
+        console.log(DateHelper.dataParaTexto(negociacao._data));
     }
 }
