@@ -1,5 +1,5 @@
-module.exports = function(app){
-    app.get('/produtos', function(request, response){
+module.exports = function(app) {
+    app.get('/produtos', function(request, response) {
         var mysql = require('mysql');
         var connection = mysql.createConnection({
             host: 'localhost',
@@ -8,11 +8,10 @@ module.exports = function(app){
             database: 'casadocodigo_nodejs'
         });
 
-        connection.query('select * from livros', function(err, results){
+        connection.query('select * from livros', function(err, results) {
             //response.send(results);
-            response.render("produtos/lista")
+            response.render('produtos/lista',{lista:results})
         });
-
         connection.end();
     })
 }

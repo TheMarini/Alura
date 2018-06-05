@@ -1,19 +1,41 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>Alura - Node.Js</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
 </head>
+
 <body>
-    <table border="1">
-        <tr>
-            <td>id</td>
-            <td>nome</td>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>Livro de node js</td>
-        </tr>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">nome</th>
+                <th scope="col">descrição</th>
+                <th scope="col">preço</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(var i = 0; i<lista.length; i++){ %>
+                <tr>
+                    <td>
+                        <%=lista[i].id%>
+                    </td>
+                    <td>
+                        <%=lista[i].titulo%>
+                    </td>
+                    <td>
+                        <%=lista[i].descricao%>
+                    </td>
+                    <td>
+                        <%=lista[i].preco%>
+                    </td>
+                </tr>
+            <% }%>
+        </tbody>
     </table>
 </body>
+
 </html>
