@@ -1,6 +1,7 @@
 var mysql = require('mysql');
 
-module.exports = function(){
+//Wrapper for Express-Load
+function connection(){
     return mysql.createConnection({
         host: 'localhost',
         user: 'root',
@@ -9,6 +10,11 @@ module.exports = function(){
     })
 }
 
+module.exports = function(){
+    return connection;
+}
+
+//DEBATE: Function or not function
 ///////////////////////////
 //
 // function createCon(){
