@@ -1,4 +1,4 @@
-var app = require('./config/express')();
+var app = require('./config/express');
 require('./app/routes/produtos')(app);
 
 app.listen(80, function(){
