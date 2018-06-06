@@ -10,9 +10,7 @@ function connection() {
   })
 }
 
-module.exports = function() {
-  return connection;
-}
+module.exports = () => connection;
 
 //DEBATE: Function or not function
 ///////////////////////////
@@ -38,19 +36,3 @@ module.exports = function() {
 //         database: 'casadocodigo_nodejs'
 //     })
 // }
-//
-// module.exports = {
-//     createCon: createCon
-// };
-//
-//
-// const db = require('dbConnection')
-// db.createCon()
-//
-// class DB {
-//     constructor() {
-//
-//     }
-// }
-//
-// module.exports = DB;

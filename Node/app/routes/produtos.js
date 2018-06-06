@@ -1,9 +1,9 @@
-module.exports = function(app) {
+module.exports = (app) => {
   app.get('/produtos', function(request, response) {
 
     var connection = app.infra.dbConnection();
 
-    app.infra.dbProducts.lista(connection, function(errors, results) {
+    app.infra.dbProducts(connection).lista(function(errors, results) {
       response.render('produtos/lista', {
         lista: results || [],
         errors: errors
@@ -11,5 +11,9 @@ module.exports = function(app) {
     });
 
     connection.end();
+  })
+
+  app.get('/produtos/remove', function(){
+
   })
 }
