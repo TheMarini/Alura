@@ -3,10 +3,10 @@ module.exports = function(app) {
 
         var connection = app.infra.dbConnection();
 
-        connection.query('select * from livros', function(err, results) {
-            //response.send(results);
-            response.render('produtos/lista',{lista:results})
+        app.infra.dbProducts.lista(connection, function(errors, results){
+            response.render('produtos/lista', {lista: results || [], errors: errors});
         });
+
         connection.end();
     })
 }

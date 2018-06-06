@@ -8,6 +8,12 @@
 </head>
 
 <body>
+    <% if(errors){%>
+    <div class="alert alert-danger" role="alert">
+        <%= errors %>
+    </div>
+    <% } %>
+    
     <table class="table">
         <thead>
             <tr>
@@ -18,7 +24,7 @@
             </tr>
         </thead>
         <tbody>
-            <% for(var i = 0; i<lista.length; i++){ %>
+            <% for(var i = 0; i < lista.length; i++){ %>
                 <tr>
                     <td>
                         <%=lista[i].id%>
@@ -33,7 +39,7 @@
                         <%=lista[i].preco%>
                     </td>
                 </tr>
-            <% }%>
+                <% }%>
         </tbody>
     </table>
 </body>
