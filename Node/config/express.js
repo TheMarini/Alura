@@ -4,6 +4,8 @@ var load = require('express-load');
 module.exports = () => {
   var app = express();
 
+  //app.use(express.static('./app/public'));
+
   app.set('view engine', 'ejs');
   app.set('views', './app/views');
 
