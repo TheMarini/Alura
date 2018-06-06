@@ -1,10 +1,10 @@
 module.exports = (app) => {
-  app.get('/produtos', function(request, response) {
+  app.get('/produtos', function(req, res) {
 
-    var connection = app.infra.dbConnection();
+    var connection = app.infra.connectionFactory();
 
-    app.infra.dbProducts(connection).lista(function(errors, results) {
-      response.render('produtos/lista', {
+    new app.infra.ProductsDAO(connection).lista(function(errors, results) {
+      res.render('produtos/lista', {
         lista: results || [],
         errors: errors
       });
@@ -13,7 +13,17 @@ module.exports = (app) => {
     connection.end();
   })
 
-  app.get('/produtos/remove', function(){
+  app.get('/produtos/form', function(req, res){
+      res.render('produtos/form');
+  })
 
+  app.post('/produtos/salva', function(req, res){
+
+    // var produto = req.body;
+    // console.log(produto);
+
+    // new app.infra.connectionFactory(connection).salva(produto, function(errors, results){
+    //   res.render('produtos/lista');
+    // })
   })
 }
