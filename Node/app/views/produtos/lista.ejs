@@ -2,46 +2,46 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Alura - Node.Js</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+  <meta charset="UTF-8">
+  <title>Alura - Node.Js</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
 </head>
 
 <body>
-    <% if(errors){%>
+  <% if(errors){%>
     <div class="alert alert-danger" role="alert">
-        <%= errors %>
+      <%= errors %>
     </div>
     <% } %>
-    
-    <table class="table">
+
+      <table class="table">
         <thead>
-            <tr>
-                <th scope="col">id</th>
-                <th scope="col">nome</th>
-                <th scope="col">descrição</th>
-                <th scope="col">preço</th>
-            </tr>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">nome</th>
+            <th scope="col">descrição</th>
+            <th scope="col">preço</th>
+          </tr>
         </thead>
         <tbody>
-            <% for(var i = 0; i < lista.length; i++){ %>
-                <tr>
-                    <td>
-                        <%=lista[i].id%>
-                    </td>
-                    <td>
-                        <%=lista[i].titulo%>
-                    </td>
-                    <td>
-                        <%=lista[i].descricao%>
-                    </td>
-                    <td>
-                        <%=lista[i].preco%>
-                    </td>
-                </tr>
-                <% }%>
+          <% for(var i = 0; i < lista.length; i++){ %>
+            <tr>
+              <td>
+                <%=lista[i].id%>
+              </td>
+              <td>
+                <%=lista[i].titulo%>
+              </td>
+              <td>
+                <%=lista[i].descricao%>
+              </td>
+              <td>
+                <%=lista[i].preco%>
+              </td>
+            </tr>
+            <% }%>
         </tbody>
-    </table>
+      </table>
 </body>
 
 </html>

@@ -1,17 +1,17 @@
 var mysql = require('mysql');
 
 //Wrapper for Express-Load
-function connection(){
-    return mysql.createConnection({
-        host: 'localhost',
-        user: 'root',
-        password: 'root',
-        database: 'casadocodigo_nodejs'
-    })
+function connection() {
+  return mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'root',
+    database: 'casadocodigo_nodejs'
+  })
 }
 
-module.exports = function(){
-    return connection;
+module.exports = function() {
+  return connection;
 }
 
 //DEBATE: Function or not function
