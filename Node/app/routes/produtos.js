@@ -28,9 +28,10 @@ module.exports = (app) => {
   //Insert
   app.post('/produtos', (request, response) =>
     connection(app, connection =>
-      new app.infra.ProductsDAO(connection).salva(request.body, (errors, results) =>
-        res.redirect('/produtos')
-      )
+      new app.infra.ProductsDAO(connection).salva(request.body, (errors, results) => {
+        console.log(errors);
+        response.redirect('/produtos');
+      })
     )
   )
 

@@ -5,7 +5,8 @@ var bodyParser = require('body-parser');
 module.exports = () => {
   var app = express();
 
-  app.use(bodyParser.urlencoded({extended: true}));
+  app.use(bodyParser.urlencoded({extended: true})); //Forms Send
+  app.use(bodyParser.json()); //JSON
 
   //requisição -> middlewareBodyParsers -> middlerwareAutenticação -> função que trata a requisição
 
