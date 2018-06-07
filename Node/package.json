@@ -17,5 +17,8 @@
     "mysql": "^2.15.0",
     "npm": "^6.1.0",
     "update": "^0.7.4"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0"
   }
 }
