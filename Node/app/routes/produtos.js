@@ -27,10 +27,14 @@ module.exports = (app) => {
 
   //Insert
   app.post('/produtos', (request, response) => {
-    request.assert('titulo', 'Titulo é obrigatório').notEmpty(); //Object | Validator Chain
+    //Object | Validator Chain
+    request.assert('titulo', 'Titulo é obrigatório').notEmpty();
+    request.assert('preco', 'Formato inválido').isFloat();
 
-    if (request.validationErrors()) //JSON with errors
-      response.render('produtos/form')
+    let errors = request.validationErrors(); //JSON with errors
+
+    if (errors)
+      response.render('produtos/form', {errors: errors, produto: request.body})
     else
       connection(app, connection =>
         new app.infra.ProductsDAO(connection).salva(request.body, (errors, results) => {
@@ -41,6 +45,6 @@ module.exports = (app) => {
 
   //Form
   app.get('/produtos/form', (request, response) =>
-    response.render('produtos/form')
+    response.render('produtos/form', {errors: null, produto: {}})
   )
 }
