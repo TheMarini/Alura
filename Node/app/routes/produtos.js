@@ -1,29 +1,31 @@
+function connection(app, callback) {
+  let connection = app.infra.connectionFactory();
+  callback(connection);
+  connection.end();
+}
+
 module.exports = (app) => {
-  app.get('/produtos', function(req, res) {
-
-    var connection = app.infra.connectionFactory();
-
-    new app.infra.ProductsDAO(connection).lista(function(errors, results) {
-      res.render('produtos/lista', {
-        lista: results || [],
-        errors: errors
-      });
-    });
-
-    connection.end();
+  //List
+  app.get('/produtos', function(request, response) {
+    connection(app, (connection) =>
+      new app.infra.ProductsDAO(connection).lista((errors, results) =>
+        response.render('produtos/lista', {
+          lista: results || [],
+          errors: errors
+        })
+      )
+    )
   })
-
-  app.get('/produtos/form', function(req, res){
-      res.render('produtos/form');
+  //Form
+  app.get('/produtos/form', function(request, response) {
+    response.render('produtos/form');
   })
-
-  app.post('/produtos/salva', function(req, res){
-
-    // var produto = req.body;
-    // console.log(produto);
-
-    // new app.infra.connectionFactory(connection).salva(produto, function(errors, results){
-    //   res.render('produtos/lista');
-    // })
+  //Input
+  app.post('/produtos/salva', function(request, response) {
+    connection(app, (connection) =>
+      new app.infra.ProductsDAO(connection).salva(request.body, (errors, results) =>
+        res.redirect('/produtos')
+      )
+    )
   })
 }
