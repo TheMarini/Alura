@@ -12,9 +12,14 @@ module.exports = (app) => {
   app.get('/produtos', (request, response) =>
     connection(app, connection =>
       new app.infra.ProductsDAO(connection).lista((errors, results) =>
-        response.render('produtos/lista', {
-          lista: results || [],
-          errors: errors
+        response.format({
+          html: () =>
+            response.render('produtos/lista', {
+              lista: results || [],
+              errors: errors
+            }),
+          json: () =>
+            response.json(results)
         })
       )
     )
@@ -32,14 +37,5 @@ module.exports = (app) => {
   //Form
   app.get('/produtos/form', (request, response) =>
     response.render('produtos/form')
-  )
-
-  //Json
-  app.get('/produtos/json', (request, response) =>
-    connection(app, connection =>
-      new app.infra.ProductsDAO(connection).lista((errors, results) =>
-        response.json(results)
-      )
-    )
   )
 }
