@@ -16,16 +16,16 @@ module.exports = (app) => {
       )
     )
   })
-  //Form
-  app.get('/produtos/form', function(request, response) {
-    response.render('produtos/form');
-  })
-  //Input
-  app.post('/produtos/salva', function(request, response) {
+  //Insert
+  app.post('/produtos', function(request, response) {
     connection(app, (connection) =>
       new app.infra.ProductsDAO(connection).salva(request.body, (errors, results) =>
         res.redirect('/produtos')
       )
     )
+  })
+  //Form
+  app.get('/produtos/form', function(request, response) {
+    response.render('produtos/form');
   })
 }
