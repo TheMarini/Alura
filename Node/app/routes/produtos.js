@@ -1,13 +1,16 @@
+//Connection Environment
 function connection(app, callback) {
   let connection = app.infra.connectionFactory();
   callback(connection);
   connection.end();
 }
 
+//Module Exports
 module.exports = (app) => {
+
   //List
-  app.get('/produtos', function(request, response) {
-    connection(app, (connection) =>
+  app.get('/produtos', (request, response) =>
+    connection(app, connection =>
       new app.infra.ProductsDAO(connection).lista((errors, results) =>
         response.render('produtos/lista', {
           lista: results || [],
@@ -15,17 +18,28 @@ module.exports = (app) => {
         })
       )
     )
-  })
+  )
+
   //Insert
-  app.post('/produtos', function(request, response) {
-    connection(app, (connection) =>
+  app.post('/produtos', (request, response) =>
+    connection(app, connection =>
       new app.infra.ProductsDAO(connection).salva(request.body, (errors, results) =>
         res.redirect('/produtos')
       )
     )
-  })
+  )
+
   //Form
-  app.get('/produtos/form', function(request, response) {
-    response.render('produtos/form');
-  })
+  app.get('/produtos/form', (request, response) =>
+    response.render('produtos/form')
+  )
+
+  //Json
+  app.get('/produtos/json', (request, response) =>
+    connection(app, connection =>
+      new app.infra.ProductsDAO(connection).lista((errors, results) =>
+        response.json(results)
+      )
+    )
+  )
 }
