@@ -1,5 +1,6 @@
 var express = require('express');
 var load = require('express-load');
+var validator = require('express-validator');
 var bodyParser = require('body-parser');
 
 module.exports = () => {
@@ -7,6 +8,7 @@ module.exports = () => {
 
   app.use(bodyParser.urlencoded({extended: true})); //Forms Send
   app.use(bodyParser.json()); //JSON
+  app.use(validator()); //JSON
 
   //requisição -> middlewareBodyParsers -> middlerwareAutenticação -> função que trata a requisição
 

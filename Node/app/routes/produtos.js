@@ -26,14 +26,18 @@ module.exports = (app) => {
   )
 
   //Insert
-  app.post('/produtos', (request, response) =>
-    connection(app, connection =>
-      new app.infra.ProductsDAO(connection).salva(request.body, (errors, results) => {
-        console.log(errors);
-        response.redirect('/produtos');
-      })
-    )
-  )
+  app.post('/produtos', (request, response) => {
+    request.assert('titulo', 'Titulo é obrigatório').notEmpty(); //Object | Validator Chain
+
+    if (request.validationErrors()) //JSON with errors
+      response.render('produtos/form')
+    else
+      connection(app, connection =>
+        new app.infra.ProductsDAO(connection).salva(request.body, (errors, results) => {
+          response.redirect('/produtos');
+        })
+      )
+  })
 
   //Form
   app.get('/produtos/form', (request, response) =>
