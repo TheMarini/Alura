@@ -4,7 +4,7 @@
   "description": "Código de introdução ao node. ",
   "main": "produtos.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "author": "Bruno Marini",
   "license": "ISC",
