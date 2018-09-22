@@ -33,9 +33,18 @@ module.exports = (app) => {
 
     let errors = request.validationErrors(); //JSON with errors
 
-    if (errors)
-      response.render('produtos/form', {errors: errors, produto: request.body})
-    else
+    if (errors) {
+      response.status(400);
+      response.format({
+        html: () =>
+          response.render('produtos/form', {
+            errors: errors,
+            produto: request.body
+          }),
+        json: () =>
+          response.json(errors)
+      })
+    } else
       connection(app, connection =>
         new app.infra.ProductsDAO(connection).salva(request.body, (errors, results) => {
           response.redirect('/produtos');
@@ -45,6 +54,9 @@ module.exports = (app) => {
 
   //Form
   app.get('/produtos/form', (request, response) =>
-    response.render('produtos/form', {errors: null, produto: {}})
+    response.render('produtos/form', {
+      errors: null,
+      produto: {}
+    })
   )
 }

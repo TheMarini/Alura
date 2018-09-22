@@ -10,12 +10,12 @@ var config = {
 };
 
 var produto = {
-  titulo: 'Terminal',
-  preco: 100,
-  descricao: 'Inserção feito pelo terminal'
+  titulo: '',
+  preco: 230,
+  descricao: 'Inserção feita pelo terminal'
 }
 
 require('http').request(config, (response) => {
   console.log(response.statusCode);
-  response.on('data', (body) => console.log('Body' + body))
+  response.on('data', (body) => console.log('data' + body))
 }).end(JSON.stringify(produto));
